@@ -69,7 +69,11 @@ Here are the key elements of Roger-Hello service:
  Roger-Hello -> helm install roger-hello roger-hello/ <br />
  
  The two PODs shall come up and they communicate each other. <br />
- 
+ ![image](https://user-images.githubusercontent.com/32276029/137011752-bb82929c-4aa3-4f6d-b486-9fba25e515b7.png)
+
+PODs communicating <br />
+![image](https://user-images.githubusercontent.com/32276029/137012027-c9e2c689-fcb9-453e-a699-ba0d73a7c425.png)
+
  
  
  
