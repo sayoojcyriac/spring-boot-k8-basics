@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class RogerService {
+    private final static String ROGER_MSG = "I got it, roger";
 
     private final RogerConfig rogerConfig;
     private final RestTemplate restTemplate;
@@ -52,16 +53,23 @@ public class RogerService {
         }
     }
 
-    public void sendRogerIt() {
+    private void sendRogerIt() {
         try {
             final HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-            final HttpEntity<String> entity = new HttpEntity<String>("I got it, roger", httpHeaders);
+            final HttpEntity<String> entity = new HttpEntity<String>(ROGER_MSG, httpHeaders);
 
-            restTemplate.exchange("http://localhost:5000/hello/post", HttpMethod.POST, entity, String.class);
+            restTemplate.exchange(this.getHelloPostUrl(), HttpMethod.POST, entity, String.class);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
+    }
+
+    private String getHelloPostUrl() {
+        return String.format("%s://%s%s",
+                "http",
+                this.rogerConfig.getHelloServiceHost(),
+                this.rogerConfig.getHelloServicePostUri());
     }
 
 }

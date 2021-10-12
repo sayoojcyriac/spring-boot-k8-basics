@@ -1,0 +1,7 @@
+FROM amazoncorretto:8u302-alpine
+
+COPY ./target/hello-world-*.jar /app/hello-world-app.jar
+USER 2500
+
+WORKDIR /app
+ENTRYPOINT ["/bin/bash", "-c", "java -jar hello-world-app.jar"]

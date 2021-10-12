@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class HelloWorldService {
+    private final static String HELLO_WORLD = "Hello World";
 
     private final HelloWorldConfig helloWorldConfig;
     private final RestTemplate restTemplate;
@@ -52,16 +53,23 @@ public class HelloWorldService {
         }
     }
 
-    public void sendHelloWorld() {
+    private void sendHelloWorld() {
         try {
             final HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-            final HttpEntity<String> entity = new HttpEntity<String>("Hello World", httpHeaders);
+            final HttpEntity<String> entity = new HttpEntity<String>(HELLO_WORLD, httpHeaders);
 
-            restTemplate.exchange("http://localhost:5001/roger/post", HttpMethod.POST, entity, String.class);
+            restTemplate.exchange(this.getRogerPostUrl(), HttpMethod.POST, entity, String.class);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
+    }
+
+    private String getRogerPostUrl() {
+        return String.format("%s://%s%s",
+                "http",
+                this.helloWorldConfig.getRogerServiceHost(),
+                this.helloWorldConfig.getRogerServicePostUri());
     }
 
 }
