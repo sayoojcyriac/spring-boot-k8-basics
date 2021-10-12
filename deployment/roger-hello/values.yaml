@@ -82,3 +82,4 @@ tolerations: []
 affinity: {}
 
 containerPort: 5000
+messageInterval: 10

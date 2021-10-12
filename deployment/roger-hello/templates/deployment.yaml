@@ -38,6 +38,11 @@ spec:
               value: {{ .Values.containerPort | quote }}
             - name: config.hello.host
               value: "hello-world"
+            - name: config.msg.interval
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "roger-hello.fullname" . }}
+                  key: message_interval
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
