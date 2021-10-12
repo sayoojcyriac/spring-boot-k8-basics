@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hello-world.fullname" . }}
+  name: {{ include "roger-hello.fullname" . }}
   labels:
-    {{- include "hello-world.labels" . | nindent 4 }}
+    {{- include "roger-hello.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "hello-world.selectorLabels" . | nindent 6 }}
+      {{- include "roger-hello.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "hello-world.selectorLabels" . | nindent 8 }}
+        {{- include "roger-hello.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "hello-world.serviceAccountName" . }}
+      serviceAccountName: {{ include "roger-hello.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -36,19 +36,19 @@ spec:
           env:
             - name: server.port
               value: {{ .Values.containerPort | quote }}
-            - name: config.roger.host
-              value: "roger-hello"
+            - name: config.hello.host
+              value: "hello-world"
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /hello/health
+              path: /roger/health
               port: http
           readinessProbe:
             httpGet:
-              path: /hello/health
+              path: /roger/health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

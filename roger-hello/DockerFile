@@ -1,0 +1,7 @@
+FROM amazoncorretto:8u302
+
+COPY ./target/roger-hello-*.jar /app/roger-hello-app.jar
+USER 2500
+
+WORKDIR /app
+ENTRYPOINT ["/bin/bash", "-c", "java -Xms64m -Xmx64m -Xss512k -jar roger-hello-app.jar"]
