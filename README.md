@@ -51,7 +51,7 @@ Here are the key elements of Roger-Hello service:
  Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/roger-hello/DockerFile <br />
  docker build -t roger-hello -f DockerFile . <br />
  
- ## Deloying on K8s
+ ## Deploying on K8s
  The Helm deployment manifests are in - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment <br />
  The modules contains the required manifests of both the serices: <br />
  <ul>
