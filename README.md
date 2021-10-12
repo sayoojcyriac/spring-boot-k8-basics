@@ -46,23 +46,30 @@ Here are the key elements of Roger-Hello service:
  ## Building Docker Images
  DockerFile resides in the respective modules <br />
  Hello-World - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/hello-world/DockerFile <br />
+ 
+ Execute below docker build command from - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/hello-world <br />
  docker build -t hello-world -f DockerFile . <br />
  
  Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/roger-hello/DockerFile <br />
+ 
+ Execute below docker build command from - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/roger-hello <br />
  docker build -t roger-hello -f DockerFile . <br />
  
  ## Deploying on K8s
  The Helm deployment manifests are in - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment <br />
- The modules contains the required manifests of both the serices: <br />
+ The modules contains the required manifests of both the services: <br />
  <ul>
   <li>deployment.yaml</li>
   <li>service.yaml</li>
   <li>configMap.yaml</li>
  </ul>
  
-The pod containers communicate via the deployed service. The configurable message interval from configMap is consumed as environment variable on the containers. The respective deployment manifests defines the environment variables. The value is also later injected as a Java Spring property into the services. <br />
+ Helm Chart for Hello-World - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment/hello-world <br />
+ Helm Chart for Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment/roger-hello <br />
  
- Run the below Helm commands from deployment directory to deploy the services. <br />
+The pod containers communicate using its deployed service. Service in K8s acts as an abstration to expose application running on different Pods as a network service. The configurable message interval from configMap is consumed as environment variable on the containers. Respective deployment manifests of service helm charts define the environment variables. The value is also later injected as a Java Spring property into the services. <br />
+ 
+ Run the below Helm commands from deployment directory (https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment) to deploy the services. <br />
  
  Hello-Word -> helm install hello-word hello-word/ <br />
  Roger-Hello -> helm install roger-hello roger-hello/ <br />
