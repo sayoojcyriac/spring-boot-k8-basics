@@ -60,8 +60,7 @@ Here are the key elements of Roger-Hello service:
   <li>configMap.yaml</li>
  </ul>
  
- The pod containers communicate via the deployed service. The configurable message interval from configMap is exported as environment variables into the containers.
- The value is also later injected as a Java Spring property into the services. <br />
+The pod containers communicate via the deployed service. The configurable message interval from configMap is consumed as environment variable on the containers. The respective deployment manifests defines the environment variables. The value is also later injected as a Java Spring property into the services. <br />
  
  Run the below Helm commands from deployment directory to deploy the services. <br />
  
