@@ -21,3 +21,56 @@ The following prerequisities are required in order to build and run the services
     <li>Kubernetes 1.16+</li>
     <li>Helm 3.0+</li>
   </ol>
+  
+## Hello-World
+Here are the key elements of Hello-World service:
+  <ul>
+    <li>The service hosts two APIs</li>
+    <li>/hello/health -> Health check API</li>
+    <li>/hello/post -> API to post message into Hello-World. Roger-Hello uses this API to post message</li>
+    <li>HelloWordService - periodically sends the message "Hello World" to Roger-Hello service. A ScheduledExecutorService handles this using a configured interval         time </li>
+  </ul>
+ 
+## Roger-Hello
+Here are the key elements of Roger-Hello service:
+  <ul>
+    <li>The service hosts two APIs</li>
+    <li>/roger/health -> Health check API</li>
+    <li>/roger/post -> API to post message into Roger-Hello. Hello-World uses this API to post message</li>
+    <li>RogerService - periodically sends the message "I got it, Roger" to Hello-World service. A ScheduledExecutorService handles this using a configured interval         time </li>
+  </ul>
+  
+ ## Building Module
+ mvn clean install
+ 
+ ## Building Docker Images
+ DockerFile resides in the respective modules <br />
+ Hello-World - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/hello-world/DockerFile <br />
+ docker build -t hello-world -f DockerFile . <br />
+ 
+ Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/roger-hello/DockerFile
+ docker build -t roger-hello -f DockerFile . <br />
+ 
+ ## Deloying on K8s
+ The Helm deployment manifests are in - https://github.com/sayoojcyriac/spring-boot-k8-basics/tree/main/deployment <br />
+ The modules contains the required manifests of both the serices: <br />
+ <ul>
+  <li>deployment.yaml</li>
+  <li>service.yaml</li>
+  <li>configMap.yaml</li>
+ </ul>
+ 
+ The pod containers communicate via the deployed service. The configurable message interval from configMap is exported as environment variables into the containers.
+ The value is also later injected as a Java Spring property into the services. <br />
+ 
+ Run the below Helm commands from deployment directory to deploy the services. <br />
+ 
+ Hello-Word -> helm install hello-word hello-word/ <br />
+ Roger-Hello -> helm install roger-hello roger-hello/ <br />
+ 
+ The two PODs shall come up and they communicate each other. <br />
+ 
+ 
+ 
+ 
+ 
