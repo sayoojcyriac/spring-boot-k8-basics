@@ -1,6 +1,6 @@
 # spring-boot-k8-basics
 
-This module contains two Java Spring boot services, Hello-World and Roger-Hello. This is a simple demo project to demostrate how the two services communicate in a K8s cluster. 
+This module contains two Java Spring boot services, Hello-World and Roger-Hello. This is a simple demo project which shows how the two services communicate in a K8s cluster. 
 
 **Hello-World pod => POD1** <br />
 **Roger-Hello pod => POD2** <br />
@@ -48,7 +48,7 @@ Here are the key elements of Roger-Hello service:
  Hello-World - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/hello-world/DockerFile <br />
  docker build -t hello-world -f DockerFile . <br />
  
- Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/roger-hello/DockerFile
+ Roger-Hello - https://github.com/sayoojcyriac/spring-boot-k8-basics/blob/main/roger-hello/DockerFile <br />
  docker build -t roger-hello -f DockerFile . <br />
  
  ## Deloying on K8s
