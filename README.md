@@ -67,16 +67,10 @@ The pod containers communicate via the deployed service. The configurable messag
  Hello-Word -> helm install hello-word hello-word/ <br />
  Roger-Hello -> helm install roger-hello roger-hello/ <br />
  ![image](https://user-images.githubusercontent.com/32276029/137017878-69c7a23b-b7c8-447d-91a2-6efa2240b490.png)
-
- Roger-Hello -> helm install roger-hello roger-hello/ <br />
  
  The two PODs shall come up and they communicate each other. <br />
  ![image](https://user-images.githubusercontent.com/32276029/137011752-bb82929c-4aa3-4f6d-b486-9fba25e515b7.png)
 
 PODs communicating <br />
 ![image](https://user-images.githubusercontent.com/32276029/137012027-c9e2c689-fcb9-453e-a699-ba0d73a7c425.png)
-
- 
- 
- 
  
