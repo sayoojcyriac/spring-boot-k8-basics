@@ -6,9 +6,9 @@ This module contains two Java Spring boot services, Hello-World and Roger-Hello.
 **Roger-Hello pod => POD2** <br />
 ---
   <ul>
-  <li>POD1 sends the message "Hello World" to POD2 in regular intervals</li>
+  <li>POD1 continuoulsy sends the message "Hello World" to POD2 in a configured interval</li>
   <li>POD2 prints the message from POD1</li>
-  <li>POD2 send the message "I got it, roger" to POD1</li>
+  <li>POD2 continuoulsy sends the message "I got it, roger" to POD1 in a configured interval</li>
   <li>POD1 acknowledges and prints the message from POD2</li>
   </ul>
 
